@@ -109,7 +109,7 @@ TPU `v3-8` 을 이용해 각각 3일, N일(Large는 학습 진행 중)을 진행
 
 ![KcBERT-Base Pretraining Loss](./img/image-20200719183852243.38b124.png)
 
-학습은 GCP의 TPU v3-8을 이용해 학습을 진행했고, 학습 시간은 Small 기준 3일정도 진행했습니다. (Large Model은 아직 학습중입니다.)
+학습은 GCP의 TPU v3-8을 이용해 학습을 진행했고, 학습 시간은 Base Model 기준 3일정도 진행했습니다. (Large Model은 아직 학습중입니다.)
 
 ## Example
 
