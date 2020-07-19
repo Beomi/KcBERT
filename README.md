@@ -107,7 +107,7 @@ TPU `v3-8` 을 이용해 각각 3일, N일(Large는 학습 진행 중)을 진행
 
 모델 학습 Loss는 Step에 따라 초기 200k에 가장 빠르게 Loss가 줄어들다 400k이후로는 조금씩 감소하는 것을 볼 수 있습니다.
 
-![KcBERT-Base Pretraining Loss](https://d1sr4ybm5bj1wl.cloudfront.net/img/typora/image-20200719183852243.38b124.png)
+![KcBERT-Base Pretraining Loss](./img/image-20200719183852243.38b124.png)
 
 학습은 GCP의 TPU v3-8을 이용해 학습을 진행했고, 학습 시간은 Small 기준 3일정도 진행했습니다. (Large Model은 아직 학습중입니다.)
 
@@ -117,7 +117,7 @@ TPU `v3-8` 을 이용해 각각 3일, N일(Large는 학습 진행 중)을 진행
 
 [HuggingFace kcbert-base 모델]([https://huggingface.co/beomi/kcbert-base?text=%EC%98%A4%EB%8A%98%EC%9D%80+%EB%82%A0%EC%94%A8%EA%B0%80+%5BMASK%5D](https://huggingface.co/beomi/kcbert-base?text=오늘은+날씨가+[MASK])) 에서 아래와 같이 테스트 해 볼 수 있습니다.
 
-![오늘은 날씨가 "좋네요"](https://d1sr4ybm5bj1wl.cloudfront.net/img/typora/image-20200719205919389.5670d6.png)
+![오늘은 날씨가 "좋네요"](./img/image-20200719205919389.5670d6.png)
 
 ### NSMC Binary Classification (Acc: `.89048`)
 
@@ -125,7 +125,7 @@ TPU `v3-8` 을 이용해 각각 3일, N일(Large는 학습 진행 중)을 진행
 
 해당 테스트 코드는 [Colab](https://colab.research.google.com/gist/Beomi/c26cf67f9fb717d81141c579635816b2/kcbert-440k-nsmc.ipynb)에서 직접 실행해보실 수 있습니다.
 
-![image-20200719201102895](https://d1sr4ybm5bj1wl.cloudfront.net/img/typora/image-20200719201102895.ddbdfc.png)
+![image-20200719201102895](./img/image-20200719201102895.ddbdfc.png)
 
 > 더 다양한 Downstream Task에 대해 테스트를 진행하고 공개할 예정입니다.
 
