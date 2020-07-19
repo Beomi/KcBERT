@@ -115,7 +115,7 @@ TPU `v3-8` 을 이용해 각각 3일, N일(Large는 학습 진행 중)을 진행
 
 ### HuggingFace MASK LM
 
-[HuggingFace kcbert-base 모델]([https://huggingface.co/beomi/kcbert-base?text=%EC%98%A4%EB%8A%98%EC%9D%80+%EB%82%A0%EC%94%A8%EA%B0%80+%5BMASK%5D](https://huggingface.co/beomi/kcbert-base?text=오늘은+날씨가+[MASK])) 에서 아래와 같이 테스트 해 볼 수 있습니다.
+[HuggingFace kcbert-base 모델](https://huggingface.co/beomi/kcbert-base?text=오늘은+날씨가+[MASK]) 에서 아래와 같이 테스트 해 볼 수 있습니다.
 
 ![오늘은 날씨가 "좋네요"](./img/image-20200719205919389.5670d6.png)
 
@@ -128,10 +128,6 @@ TPU `v3-8` 을 이용해 각각 3일, N일(Large는 학습 진행 중)을 진행
 ![image-20200719201102895](./img/image-20200719201102895.ddbdfc.png)
 
 > 더 다양한 Downstream Task에 대해 테스트를 진행하고 공개할 예정입니다.
-
-## Acknowledgement
-
-
 
 ## Acknowledgement
 
