@@ -123,7 +123,7 @@ TPU `v3-8` 을 이용해 각각 3일, N일(Large는 학습 진행 중)을 진행
 
 [네이버 영화평 코퍼스](https://github.com/e9t/nsmc) 데이터셋을 대상으로 Fine Tuning을 진행해 성능을 간단히 테스트해보았습니다.
 
-해당 테스트 코드는 [Colab](https://colab.research.google.com/gist/Beomi/c26cf67f9fb717d81141c579635816b2/kcbert-440k-nsmc.ipynb)에서 직접 실행해보실 수 있습니다.
+해당 테스트 코드는 [Colab](https://colab.research.google.com/gist/Beomi/c26cf67f9fb717d81141c579635816b2/kcbert-nsmc.ipynb)에서 직접 실행해보실 수 있습니다.
 
 ![image-20200719201102895](./img/image-20200719201102895.ddbdfc.png)
 
