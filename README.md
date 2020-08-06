@@ -206,9 +206,9 @@ TPU `v3-8` 을 이용해 각각 3일, N일(Large는 학습 진행 중)을 진행
 
   ![KcBERT Base finetune on NSMC](./img/image-20200719201102895.ddbdfc.png)
 
-- KcBERT-Large Model 실험 결과: Val acc `.9070`
+- KcBERT-Large Model 실험 결과: Val acc `.9089`
 
-  ![Large model Validation Acc](./img/image-20200806183029790.1dbb16.png)
+  ![image-20200806190242834](./img/image-20200806190242834.56d6ee.png)
 
 > 더 다양한 Downstream Task에 대해 테스트를 진행하고 공개할 예정입니다.
 
