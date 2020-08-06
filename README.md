@@ -6,26 +6,30 @@ KcBERT는 위와 같은 특성의 데이터셋에 적용하기 위해, 네이버
 
 KcBERT는 Huggingface의 Transformers 라이브러리를 통해 간편히 불러와 사용할 수 있습니다. (별도의 파일 다운로드가 필요하지 않습니다.)
 
-
 ## How to use
 
-> Huggingface Model Page: https://huggingface.co/beomi/kcbert-base
+### Requirements
 
 - `pytorch ~= 1.5.1`
+
 - `transformers ~= 3.0.1`
+- `emoji ~= 0.6.0`
+- `soynlp ~= 0.0.493`
 
 ```python
 from transformers import AutoTokenizer, AutoModelWithLMHead
+
+# Base Model (108M)
 
 tokenizer = AutoTokenizer.from_pretrained("beomi/kcbert-base")
 
 model = AutoModelWithLMHead.from_pretrained("beomi/kcbert-base")
 
-# BERT Large Model 공개 예정 
+# Large Model (334M)
 
-# tokenizer = AutoTokenizer.from_pretrained("beomi/kcbert-large")
+tokenizer = AutoTokenizer.from_pretrained("beomi/kcbert-large")
 
-# model = AutoModelWithLMHead.from_pretrained("beomi/kcbert-large")
+model = AutoModelWithLMHead.from_pretrained("beomi/kcbert-large")
 ```
 
 ## Train Data & Preprocessing
@@ -64,6 +68,31 @@ PLM 학습을 위해서 전처리를 진행한 과정은 다음과 같습니다.
 
 이를 통해 만든 최종 학습 데이터는 **12.5GB, 8.9천만개 문장**입니다.
 
+아래 명령어로 pip로 설치한 뒤, 아래 clean함수로 클리닝을 하면 Downstream task에서 보다 성능이 좋아집니다. (`[UNK]` 감소)
+
+```bash
+pip install soynlp emoji
+```
+
+아래 `clean` 함수를 Text data에 사용해주세요.
+
+```python
+import re
+import emoji
+from soynlp.normalizer import repeat_normalize
+
+emojis = ''.join(emoji.UNICODE_EMOJI.keys())
+pattern = re.compile(f'[^ .,?!/@$%~％·∼()\x00-\x7Fㄱ-힣{emojis}]+')
+url_pattern = re.compile(
+    r'https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)')
+
+def clean(x):
+    x = pattern.sub(' ', x)
+    x = url_pattern.sub('', x)
+    x = x.strip()
+    x = repeat_normalize(x, num_repeats=2)
+    return x
+```
 
 ## Tokenizer Train
 
@@ -74,6 +103,8 @@ Tokenizer는 Huggingface의 [Tokenizers](https://github.com/huggingface/tokenize
 Tokenizer를 학습하는 것에는 `1/10`로 샘플링한 데이터로 학습을 진행했고, 보다 골고루 샘플링하기 위해 일자별로 stratify를 지정한 뒤 햑습을 진행했습니다.
 
 ## BERT Model Pretrain
+
+- KcBERT Base config
 
 ```json
 {
@@ -101,15 +132,51 @@ Tokenizer를 학습하는 것에는 `1/10`로 샘플링한 데이터로 학습�
 }
 ```
 
+- KcBERT Large config
+
+```json
+{
+    "type_vocab_size": 2,
+    "initializer_range": 0.02,
+    "max_position_embeddings": 300,
+    "vocab_size": 30000,
+    "hidden_size": 1024,
+    "hidden_dropout_prob": 0.1,
+    "model_type": "bert",
+    "directionality": "bidi",
+    "pooler_num_attention_heads": 12,
+    "pooler_fc_size": 768,
+    "pad_token_id": 0,
+    "pooler_type": "first_token_transform",
+    "layer_norm_eps": 1e-12,
+    "hidden_act": "gelu",
+    "num_hidden_layers": 24,
+    "pooler_num_fc_layers": 3,
+    "num_attention_heads": 16,
+    "pooler_size_per_head": 128,
+    "attention_probs_dropout_prob": 0.1,
+    "intermediate_size": 4096,
+    "architectures": [
+        "BertForMaskedLM"
+    ]
+}
+```
+
 BERT Model Config는 Base, Large 기본 세팅값을 그대로 사용했습니다. (MLM 15% 등)
 
 TPU `v3-8` 을 이용해 각각 3일, N일(Large는 학습 진행 중)을 진행했고, 현재 Huggingface에 공개된 모델은 1m(100만) step을 학습한 ckpt가 업로드 되어있습니다.
 
 모델 학습 Loss는 Step에 따라 초기 200k에 가장 빠르게 Loss가 줄어들다 400k이후로는 조금씩 감소하는 것을 볼 수 있습니다.
 
+- Base Model Loss
+
 ![KcBERT-Base Pretraining Loss](./img/image-20200719183852243.38b124.png)
 
-학습은 GCP의 TPU v3-8을 이용해 학습을 진행했고, 학습 시간은 Base Model 기준 3일정도 진행했습니다. (Large Model은 아직 학습중입니다.)
+- Large Model Loss
+
+![KcBERT-Large Pretraining Loss](./img/image-20200806160746694.d56fa1.png)
+
+학습은 GCP의 TPU v3-8을 이용해 학습을 진행했고, 학습 시간은 Base Model 기준 2.5일정도 진행했습니다. Large Model은 약 5일정도 진행한 뒤 가장 낮은 loss를 가진 체크포인트로 정했습니다.
 
 ## Example
 
@@ -117,17 +184,34 @@ TPU `v3-8` 을 이용해 각각 3일, N일(Large는 학습 진행 중)을 진행
 
 [HuggingFace kcbert-base 모델](https://huggingface.co/beomi/kcbert-base?text=오늘은+날씨가+[MASK]) 에서 아래와 같이 테스트 해 볼 수 있습니다.
 
-![오늘은 날씨가 "좋네요"](./img/image-20200719205919389.5670d6.png)
+![오늘은 날씨가 "좋네요", KcBERT-Base](./img/image-20200719205919389.5670d6.png)
 
-### NSMC Binary Classification (Acc: `.89048`)
+물론 [kcbert-large 모델](https://huggingface.co/beomi/kcbert-large?text=오늘은+날씨가+[MASK]) 에서도 테스트 할 수 있습니다.
+
+![image-20200806160624340](./img/image-20200806160624340.58f9be.png)
+
+
+
+### NSMC Binary Classification (Base Acc: `.89048`, Large Acc: `.9070`)
 
 [네이버 영화평 코퍼스](https://github.com/e9t/nsmc) 데이터셋을 대상으로 Fine Tuning을 진행해 성능을 간단히 테스트해보았습니다.
 
-해당 테스트 코드는 [Colab](https://colab.research.google.com/gist/Beomi/c26cf67f9fb717d81141c579635816b2/kcbert-nsmc.ipynb)에서 직접 실행해보실 수 있습니다.
+> - Base Model을 Fine Tune하는 코드는 [이 Colab 링크](https://colab.research.google.com/gist/Beomi/c26cf67f9fb717d81141c579635816b2/kcbert-nsmc.ipynb)에서 직접 실행해보실 수 있습니다.
+> - Large Model을 Fine Tune하는 코드는 [GPU버전 Colab 링크](https://colab.research.google.com/drive/1dFC0FL-521m7CL_PSd8RLKq67jgTJVhL?usp=sharing) 와 TPU버전 Colab 링크(공개예정, 작업중)에서 직접 실행해볼 수 있습니다.
+>   - GPU는 1epoch에 2~3시간, TPU는 1epoch에 1~2시간이 소요됩니다.
+>   - Large Model 예시 코드는 [pytorch-lightning](https://github.com/PyTorchLightning/pytorch-lightning)으로 개발했습니다.
 
-![image-20200719201102895](./img/image-20200719201102895.ddbdfc.png)
+- KcBERT-Base Model 실험결과: Val acc `.8905`
+
+  ![KcBERT Base finetune on NSMC](./img/image-20200719201102895.ddbdfc.png)
+
+- KcBERT-Large Model 실험 결과: Val acc `.9070`
+
+  ![Large model Validation Acc](./img/image-20200806183029790.1dbb16.png)
 
 > 더 다양한 Downstream Task에 대해 테스트를 진행하고 공개할 예정입니다.
+
+
 
 ## Acknowledgement
 
