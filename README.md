@@ -192,7 +192,7 @@ TPU `v3-8` 을 이용해 각각 3일, N일(Large는 학습 진행 중)을 진행
 
 
 
-### NSMC Binary Classification (Base Acc: `.89048`, Large Acc: `.9070`)
+### NSMC Binary Classification
 
 [네이버 영화평 코퍼스](https://github.com/e9t/nsmc) 데이터셋을 대상으로 Fine Tuning을 진행해 성능을 간단히 테스트해보았습니다.
 
