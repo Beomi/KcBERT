@@ -198,7 +198,8 @@ TPU `v3-8` 을 이용해 각각 3일, N일(Large는 학습 진행 중)을 진행
 
 > - Base Model을 Fine Tune하는 코드는 [이 Colab 링크](https://colab.research.google.com/gist/Beomi/c26cf67f9fb717d81141c579635816b2/kcbert-nsmc.ipynb)에서 직접 실행해보실 수 있습니다.
 > - Large Model을 Fine Tune하는 코드는 [GPU버전 Colab 링크](https://colab.research.google.com/drive/1dFC0FL-521m7CL_PSd8RLKq67jgTJVhL?usp=sharing) 와 TPU버전 Colab 링크(공개예정, 작업중)에서 직접 실행해볼 수 있습니다.
->   - GPU는 1epoch에 2~3시간, TPU는 1epoch에 1~2시간이 소요됩니다.
+>   - GPU는 P100 x1대 기준 1epoch에 2-3시간, TPU는 1epoch에 1시간 내로 소요됩니다.
+>     - GPU RTX Titan x4대 기준 30분/epoch 소요됩니다.
 >   - Large Model 예시 코드는 [pytorch-lightning](https://github.com/PyTorchLightning/pytorch-lightning)으로 개발했습니다.
 
 - KcBERT-Base Model 실험결과: Val acc `.8905`
