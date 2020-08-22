@@ -1,5 +1,15 @@
 # KcBERT: Korean comments BERT
 
+** Updates on 2020.08.22 **
+
+Pretrain Dataset 공개: https://www.kaggle.com/junbumlee/kcbert-pretraining-corpus-korean-news-comments
+
+Kaggle에 학습을 위해 정제한(아래 `clean`처리를 거친) Dataset을 공개하였습니다!
+
+직접 다운받으셔서 다양한 Task에 학습을 진행해보세요 :) 
+
+---
+
 공개된 한국어 BERT는 대부분 한국어 위키, 뉴스 기사, 책 등 잘 정제된 데이터를 기반으로 학습한 모델입니다. 한편, 실제로 NSMC와 같은 댓글형 데이터셋은 정제되지 않았고 구어체 특징에 신조어가 많으며, 오탈자 등 공식적인 글쓰기에서 나타나지 않는 표현들이 빈번하게 등장합니다.
 
 KcBERT는 위와 같은 특성의 데이터셋에 적용하기 위해, 네이버 뉴스에서 댓글과 대댓글을 수집해, 토크나이저와 BERT모델을 처음부터 학습한 Pretrained BERT 모델입니다.
@@ -93,6 +103,13 @@ def clean(x):
     x = repeat_normalize(x, num_repeats=2)
     return x
 ```
+
+### Cleaned Data (Released on Kaggle)
+
+원본 데이터를 위 `clean`함수로 정제한 12GB분량의 txt 파일을 아래 Kaggle Dataset에서 다운받으실 수 있습니다 :)
+
+https://www.kaggle.com/junbumlee/kcbert-pretraining-corpus-korean-news-comments
+
 
 ## Tokenizer Train
 
