@@ -1,8 +1,22 @@
 # KcBERT: Korean comments BERT
 
+** Updates on 2020.09.08 **
+
+Github Release를 통해 학습 데이터를 업로드하였습니다.
+
+다만 한 파일당 2GB 이내의 제약으로 인해 분할압축되어있습니다.
+
+아래 링크를 통해 받아주세요. (가입 없이 받을 수 있어요. 분할압축)
+
+만약 한 파일로 받고싶으시거나/Kaggle에서 데이터를 살펴보고 싶으시다면 아래의 캐글 데이터셋을 이용해주세요.
+
+- Github릴리즈: https://github.com/Beomi/KcBERT/releases/tag/TrainData_v1
+
 ** Updates on 2020.08.22 **
 
-Pretrain Dataset 공개: https://www.kaggle.com/junbumlee/kcbert-pretraining-corpus-korean-news-comments
+Pretrain Dataset 공개
+
+- 캐글: https://www.kaggle.com/junbumlee/kcbert-pretraining-corpus-korean-news-comments (한 파일로 받을 수 있어요. 단일파일)
 
 Kaggle에 학습을 위해 정제한(아래 `clean`처리를 거친) Dataset을 공개하였습니다!
 
