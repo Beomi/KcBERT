@@ -1,5 +1,15 @@
 # KcBERT: Korean comments BERT
 
+** Updates on 2020.09.11 **
+
+KcBERT를 Google Colab에서 TPU를 통해 학습할 수 있는 튜토리얼을 제공합니다!
+
+링크: https://colab.research.google.com/drive/1lYBYtaXqt9S733OXdXvrvC09ysKFN30W?usp=sharing
+
+텍스트 분량만 전체 12G 텍스트 중 일부(144MB)로 줄여 학습을 진행합니다. 
+
+한국어 데이터셋/코퍼스를 좀더 쉽게 사용할 수 있는 [Korpora](https://github.com/ko-nlp/Korpora) 패키지를 사용합니다.
+
 ** Updates on 2020.09.08 **
 
 Github Release를 통해 학습 데이터를 업로드하였습니다.
