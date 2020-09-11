@@ -4,7 +4,9 @@
 
 KcBERT를 Google Colab에서 TPU를 통해 학습할 수 있는 튜토리얼을 제공합니다! 아래 버튼을 눌러보세요.
 
-[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/drive/1lYBYtaXqt9S733OXdXvrvC09ysKFN30W?usp=sharing]
+<a href="https://colab.research.google.com/drive/1lYBYtaXqt9S733OXdXvrvC09ysKFN30W">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
 
 텍스트 분량만 전체 12G 텍스트 중 일부(144MB)로 줄여 학습을 진행합니다. 
 
