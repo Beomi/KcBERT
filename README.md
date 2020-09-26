@@ -281,5 +281,5 @@ KcBERT Model을 학습하는 GCP/TPU 환경은 [TFRC](https://www.tensorflow.org
 ### Blogs
 
 - [Monologg님의 KoELECTRA 학습기](https://monologg.kr/categories/NLP/ELECTRA/)
-- [Colab에서 TPU로 BERT 처음부터 학습시키기 - Tensorflow/Google ver.](/2020/02/26/Train-BERT-from-scratch-on-colab-TPU-Tensorflow-ver/)
+- [Colab에서 TPU로 BERT 처음부터 학습시키기 - Tensorflow/Google ver.](https://beomi.github.io/2020/02/26/Train-BERT-from-scratch-on-colab-TPU-Tensorflow-ver/)
 
