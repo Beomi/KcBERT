@@ -56,6 +56,7 @@ KcBERT는 Huggingface의 Transformers 라이브러리를 통해 간편히 불러
 - `pytorch ~= 1.5.1`
 
 - `transformers ~= 3.0.1`
+  - `transformers ~= 4.0.0` 도 호환됩니다.
 - `emoji ~= 0.6.0`
 - `soynlp ~= 0.0.493`
 
