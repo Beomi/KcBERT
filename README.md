@@ -84,7 +84,7 @@ model = AutoModelWithLMHead.from_pretrained("beomi/kcbert-large")
 
 #### Pretrain Code
 
-- [Colab에서 TPU로 KcBERT Pretrin하기](https://colab.research.google.com/drive/1lYBYtaXqt9S733OXdXvrvC09ysKFN30W)
+- [Colab에서 TPU로 KcBERT Pretrain하기](https://colab.research.google.com/drive/1lYBYtaXqt9S733OXdXvrvC09ysKFN30W)
 
 #### Finetune Samples
 
