@@ -1,5 +1,12 @@
 # KcBERT: Korean comments BERT
 
+** Updates on 2020.12.04 **
+
+Huggingface Transformers가 v4.0.0으로 업데이트됨에 따라 Tutorial의 코드가 일부 변경되었습니다.
+
+- [업데이트된 KcBERT-Large NSMC Finetuning Colab](https://colab.research.google.com/drive/1dFC0FL-521m7CL_PSd8RLKq67jgTJVhL?usp=sharing)
+- 아래에 Colab 링크를 정리해두었습니다.
+
 ** Updates on 2020.09.11 **
 
 KcBERT를 Google Colab에서 TPU를 통해 학습할 수 있는 튜토리얼을 제공합니다! 아래 버튼을 눌러보세요.
@@ -67,6 +74,23 @@ tokenizer = AutoTokenizer.from_pretrained("beomi/kcbert-large")
 
 model = AutoModelWithLMHead.from_pretrained("beomi/kcbert-large")
 ```
+
+### Pretrain & Finetune Colab 링크 모음 
+
+#### Pretrain Data
+
+- [데이터셋 다운로드(Kaggle, 단일파일, 로그인 필요)](https://www.kaggle.com/junbumlee/kcbert-pretraining-corpus-korean-news-comments)
+- [데이터셋 다운로드(Github, 압축 여러파일, 로그인 불필요)](https://github.com/Beomi/KcBERT/releases/tag/TrainData_v1)
+
+#### Pretrain Code
+
+- [Colab에서 TPU로 KcBERT Pretrin하기](https://colab.research.google.com/drive/1lYBYtaXqt9S733OXdXvrvC09ysKFN30W)
+
+#### Finetune Samples
+
+- [KcBERT-Base NSMC Finetuning with PyTorch (Colab)](https://colab.research.google.com/gist/Beomi/c26cf67f9fb717d81141c579635816b2/kcbert-nsmc.ipynb)
+- [KcBERT-Large NSMC Finetuning with PyTorch-Lightning (Colab)](https://colab.research.google.com/drive/1dFC0FL-521m7CL_PSd8RLKq67jgTJVhL?usp=sharing)
+
 
 ## Train Data & Preprocessing
 
