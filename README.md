@@ -4,14 +4,15 @@
 
 Huggingface Transformers가 v4.0.0으로 업데이트됨에 따라 Tutorial의 코드가 일부 변경되었습니다.
 
-- [업데이트된 KcBERT-Large NSMC Finetuning Colab](https://colab.research.google.com/drive/1dFC0FL-521m7CL_PSd8RLKq67jgTJVhL?usp=sharing)
-- 아래에 Colab 링크를 정리해두었습니다.
+업데이트된 KcBERT-Large NSMC Finetuning Colab: <a href="https://colab.research.google.com/drive/1dFC0FL-521m7CL_PSd8RLKq67jgTJVhL?usp=sharing">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
 
 ** Updates on 2020.09.11 **
 
 KcBERT를 Google Colab에서 TPU를 통해 학습할 수 있는 튜토리얼을 제공합니다! 아래 버튼을 눌러보세요.
 
-<a href="https://colab.research.google.com/drive/1lYBYtaXqt9S733OXdXvrvC09ysKFN30W">
+Colab에서 TPU로 KcBERT Pretrain 해보기: <a href="https://colab.research.google.com/drive/1lYBYtaXqt9S733OXdXvrvC09ysKFN30W">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
 
@@ -85,13 +86,21 @@ model = AutoModelWithLMHead.from_pretrained("beomi/kcbert-large")
 
 #### Pretrain Code
 
-- [Colab에서 TPU로 KcBERT Pretrain하기](https://colab.research.google.com/drive/1lYBYtaXqt9S733OXdXvrvC09ysKFN30W)
+Colab에서 TPU로 KcBERT Pretrain 해보기: <a href="https://colab.research.google.com/drive/1lYBYtaXqt9S733OXdXvrvC09ysKFN30W">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
 
 #### Finetune Samples
 
-- [KcBERT-Base NSMC Finetuning with PyTorch (Colab)](https://colab.research.google.com/gist/Beomi/c26cf67f9fb717d81141c579635816b2/kcbert-nsmc.ipynb)
-- [KcBERT-Large NSMC Finetuning with PyTorch-Lightning (Colab)](https://colab.research.google.com/drive/1dFC0FL-521m7CL_PSd8RLKq67jgTJVhL?usp=sharing)
+**KcBERT-Base** NSMC Finetuning with PyTorch-Lightning (Colab) <a href="https://colab.research.google.com/drive/1fn4sVJ82BrrInjq6y5655CYPP-1UKCLb?usp=sharing">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
 
+**KcBERT-Large** NSMC Finetuning with PyTorch-Lightning (Colab) <a href="https://colab.research.google.com/drive/1dFC0FL-521m7CL_PSd8RLKq67jgTJVhL?usp=sharing">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
+
+> 위 두 코드는 Pretrain 모델(base, large)와 batch size만 다를 뿐, 나머지 코드는 완전히 동일합니다.
 
 ## Train Data & Preprocessing
 
@@ -264,11 +273,19 @@ TPU `v3-8` 을 이용해 각각 3일, N일(Large는 학습 진행 중)을 진행
 
 [네이버 영화평 코퍼스](https://github.com/e9t/nsmc) 데이터셋을 대상으로 Fine Tuning을 진행해 성능을 간단히 테스트해보았습니다.
 
-> - Base Model을 Fine Tune하는 코드는 [이 Colab 링크](https://colab.research.google.com/gist/Beomi/c26cf67f9fb717d81141c579635816b2/kcbert-nsmc.ipynb)에서 직접 실행해보실 수 있습니다.
-> - Large Model을 Fine Tune하는 코드는 [GPU버전 Colab 링크](https://colab.research.google.com/drive/1dFC0FL-521m7CL_PSd8RLKq67jgTJVhL?usp=sharing) 와 TPU버전 Colab 링크(공개예정, 작업중)에서 직접 실행해볼 수 있습니다.
->   - GPU는 P100 x1대 기준 1epoch에 2-3시간, TPU는 1epoch에 1시간 내로 소요됩니다.
->     - GPU RTX Titan x4대 기준 30분/epoch 소요됩니다.
->   - Large Model 예시 코드는 [pytorch-lightning](https://github.com/PyTorchLightning/pytorch-lightning)으로 개발했습니다.
+Base Model을 Fine Tune하는 코드는 <a href="https://colab.research.google.com/drive/1fn4sVJ82BrrInjq6y5655CYPP-1UKCLb?usp=sharing">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a> 에서 직접 실행해보실 수 있습니다.
+
+Large Model을 Fine Tune하는 코드는 <a href="https://colab.research.google.com/drive/1dFC0FL-521m7CL_PSd8RLKq67jgTJVhL?usp=sharing">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a> 에서 직접 실행해볼 수 있습니다.
+
+- GPU는 P100 x1대 기준 1epoch에 2-3시간, TPU는 1epoch에 1시간 내로 소요됩니다.
+- GPU RTX Titan x4대 기준 30분/epoch 소요됩니다.
+- 예시 코드는 [pytorch-lightning](https://github.com/PyTorchLightning/pytorch-lightning)으로 개발했습니다.
+
+#### 실험결과
 
 - KcBERT-Base Model 실험결과: Val acc `.8905`
 
