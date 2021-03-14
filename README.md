@@ -1,5 +1,10 @@
 # KcBERT: Korean comments BERT
 
+** Updates on 2021.03.14 **
+
+- KcBERT Paper 인용 표기를 추가하였습니다.(bibtex)
+- KcBERT-finetune Performance score를 본문에 추가하였습니다.
+
 ** Updates on 2020.12.04 **
 
 Huggingface Transformers가 v4.0.0으로 업데이트됨에 따라 Tutorial의 코드가 일부 변경되었습니다.
@@ -50,12 +55,31 @@ KcBERT는 위와 같은 특성의 데이터셋에 적용하기 위해, 네이버
 
 KcBERT는 Huggingface의 Transformers 라이브러리를 통해 간편히 불러와 사용할 수 있습니다. (별도의 파일 다운로드가 필요하지 않습니다.)
 
+## KcBERT Performance
+
+- Finetune 코드는 https://github.com/Beomi/KcBERT-finetune 에서 찾아보실 수 있습니다.
+
+|                       | Size<br/>(용량)  | **NSMC**<br/>(acc) | **Naver NER**<br/>(F1) | **PAWS**<br/>(acc) | **KorNLI**<br/>(acc) | **KorSTS**<br/>(spearman) | **Question Pair**<br/>(acc) | **KorQuaD (Dev)**<br/>(EM/F1) |
+| :-------------------- | :---: | :----------------: | :--------------------: | :----------------: | :------------------: | :-----------------------: | :-------------------------: | :---------------------------: |
+| KcBERT-Base                | 417M  |       89.62        |         84.34          |       66.95        |        74.85         |           75.57           |            93.93            |         60.25 / 84.39         |
+| KcBERT-Large                | 1.2G  |       **90.68**        |         85.53          |       70.15        |        76.99         |           77.49           |            94.06            |         62.16 / 86.64          |
+| KoBERT                | 351M  |       89.63        |         86.11          |       80.65        |        79.00         |           79.64           |            93.93            |         52.81 / 80.27         |
+| XLM-Roberta-Base      | 1.03G |       89.49        |         86.26          |       82.95        |        79.92         |           79.09           |            93.53            |         64.70 / 88.94         |
+| HanBERT               | 614M  |       90.16        |       **87.31**        |       82.40        |      **80.89**       |           83.33           |            94.19            |         78.74 / 92.02         |
+| KoELECTRA-Base    | 423M  |     **90.21**      |         86.87          |       81.90        |        80.85         |           83.21           |            94.20            |         61.10 / 89.59         |
+| KoELECTRA-Base-v2 | 423M  |       89.70        |         87.02          |     **83.90**      |        80.61         |         **84.30**         |          **94.72**          |       **84.34 / 92.58**       |
+| DistilKoBERT           | 108M |       88.41        |         84.13          |       62.55        |        70.55         |           73.21           |            92.48            |         54.12 / 77.80         |
+
+
+\*HanBERT의 Size는 Bert Model과 Tokenizer DB를 합친 것입니다.
+
+\***config의 세팅을 그대로 하여 돌린 결과이며, hyperparameter tuning을 추가적으로 할 시 더 좋은 성능이 나올 수 있습니다.**
+
 ## How to use
 
 ### Requirements
 
-- `pytorch ~= 1.5.1`
-
+- `pytorch <= 1.8.0`
 - `transformers ~= 3.0.1`
   - `transformers ~= 4.0.0` 도 호환됩니다.
 - `emoji ~= 0.6.0`
@@ -187,20 +211,15 @@ Tokenizer를 학습하는 것에는 `1/10`로 샘플링한 데이터로 학습�
 {
     "max_position_embeddings": 300,
     "hidden_dropout_prob": 0.1,
-    "pooler_size_per_head": 128,
     "hidden_act": "gelu",
     "initializer_range": 0.02,
     "num_hidden_layers": 12,
-    "pooler_num_attention_heads": 12,
     "type_vocab_size": 2,
     "vocab_size": 30000,
     "hidden_size": 768,
     "attention_probs_dropout_prob": 0.1,
     "directionality": "bidi",
     "num_attention_heads": 12,
-    "pooler_fc_size": 768,
-    "pooler_type": "first_token_transform",
-    "pooler_num_fc_layers": 3,
     "intermediate_size": 3072,
     "architectures": [
         "BertForMaskedLM"
@@ -221,16 +240,11 @@ Tokenizer를 학습하는 것에는 `1/10`로 샘플링한 데이터로 학습�
     "hidden_dropout_prob": 0.1,
     "model_type": "bert",
     "directionality": "bidi",
-    "pooler_num_attention_heads": 12,
-    "pooler_fc_size": 768,
     "pad_token_id": 0,
-    "pooler_type": "first_token_transform",
     "layer_norm_eps": 1e-12,
     "hidden_act": "gelu",
     "num_hidden_layers": 24,
-    "pooler_num_fc_layers": 3,
     "num_attention_heads": 16,
-    "pooler_size_per_head": 128,
     "attention_probs_dropout_prob": 0.1,
     "intermediate_size": 4096,
     "architectures": [
@@ -297,7 +311,21 @@ Large Model을 Fine Tune하는 코드는 <a href="https://colab.research.google.
 
 > 더 다양한 Downstream Task에 대해 테스트를 진행하고 공개할 예정입니다.
 
+## 인용표기/Citation
 
+KcBERT를 인용하실 때는 아래 양식을 통해 인용해주세요.
+
+```
+@inproceedings{lee2020kcbert,
+  title = {{KcBERT}: 한국어 댓글로 학습한 BERT,
+  author = {Junbum Lee},
+  booktitle = {Proceedings of the 20th Annual Conference on Human and Cognitive Language Technology, pp. 437-440.},
+  year = {2020},
+  url = {https://sites.google.com/view/hclt2020}
+}
+```
+
+- 논문집 다운로드 링크: http://hclt.kr/dwn/?v=bG5iOmNvbmZlcmVuY2U7aWR4OjMy (*혹은 http://hclt.kr/symp/?lnb=conference )
 
 ## Acknowledgement
 
