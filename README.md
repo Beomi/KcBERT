@@ -317,7 +317,7 @@ KcBERT를 인용하실 때는 아래 양식을 통해 인용해주세요.
 
 ```
 @inproceedings{lee2020kcbert,
-  title = {{KcBERT}: 한국어 댓글로 학습한 BERT,
+  title = {{KcBERT}: Korean Comments BERT,
   author = {Junbum Lee},
   booktitle = {Proceedings of the 20th Annual Conference on Human and Cognitive Language Technology, pp. 437-440.},
   year = {2020},
