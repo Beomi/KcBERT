@@ -317,11 +317,11 @@ KcBERT를 인용하실 때는 아래 양식을 통해 인용해주세요.
 
 ```
 @inproceedings{lee2020kcbert,
-  title = {{KcBERT}: Korean Comments BERT,
-  author = {Junbum Lee},
-  booktitle = {Proceedings of the 32nd Annual Conference on Human and Cognitive Language Technology, pp. 437-440.},
-  year = {2020},
-  url = {https://sites.google.com/view/hclt2020}
+  title={KcBERT: Korean Comments BERT},
+  author={Lee, Junbum},
+  booktitle={Proceedings of the 32nd Annual Conference on Human and Cognitive Language Technology},
+  pages={437--440},
+  year={2020}
 }
 ```
 
