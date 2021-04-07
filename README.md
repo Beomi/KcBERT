@@ -1,5 +1,12 @@
 # KcBERT: Korean comments BERT
 
+** Updates on 2021.04.07 **
+
+- KcELECTRA가 릴리즈 되었습니다!🤗
+- KcELECTRA는 보다 더 많은 데이터셋, 그리고 더 큰 General vocab을 통해 KcBERT 대비 **모든 태스크에서 더 높은 성능**을 보입니다.
+- 아래 깃헙 링크에서 직접 사용해보세요!
+- https://github.com/Beomi/KcELECTRA
+
 ** Updates on 2021.03.14 **
 
 - KcBERT Paper 인용 표기를 추가하였습니다.(bibtex)
