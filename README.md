@@ -182,7 +182,8 @@ import re
 import emoji
 from soynlp.normalizer import repeat_normalize
 
-emojis = ''.join(emoji.UNICODE_EMOJI.keys())
+emojis = list({y for x in emoji.UNICODE_EMOJI.values() for y in x.keys()})
+emojis = ''.join(emojis)
 pattern = re.compile(f'[^ .,?!/@$%~％·∼()\x00-\x7Fㄱ-ㅣ가-힣{emojis}]+')
 url_pattern = re.compile(
     r'https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)')
