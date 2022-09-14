@@ -1,5 +1,9 @@
 # KcBERT: Korean comments BERT
 
+** Updates on 2022.09.14 **
+
+- emoji의 v2.0.0 업데이트됨에 따라 Preprocessing 코드가 일부 변경되었습니다.
+
 ** Updates on 2021.04.07 **
 
 - KcELECTRA가 릴리즈 되었습니다!🤗
@@ -182,17 +186,17 @@ import re
 import emoji
 from soynlp.normalizer import repeat_normalize
 
-emojis = list({y for x in emoji.UNICODE_EMOJI.values() for y in x.keys()})
-emojis = ''.join(emojis)
-pattern = re.compile(f'[^ .,?!/@$%~％·∼()\x00-\x7Fㄱ-ㅣ가-힣{emojis}]+')
+pattern = re.compile(f'[^ .,?!/@$%~％·∼()\x00-\x7Fㄱ-ㅣ가-힣]+')
 url_pattern = re.compile(
     r'https?:\/\/(www\.)?[-a-zA-Z0-9@:%._\+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_\+.~#?&//=]*)')
 
-def clean(x):
+def clean(x): 
     x = pattern.sub(' ', x)
+    x = emoji.replace_emoji(x, replace='') #emoji 삭제
     x = url_pattern.sub('', x)
     x = x.strip()
     x = repeat_normalize(x, num_repeats=2)
+
     return x
 ```
 
