@@ -1,6 +1,8 @@
 # KcBERT: Korean comments BERT
 
-The property UNICODE_EMOJI was removed in version 2.0.0 of emoji
+** Updates on 2022.09.14 **
+
+- emoji의 v2.0.0 업데이트됨에 따라 Preprocessing 코드가 일부 변경되었습니다.
 
 ** Updates on 2021.04.07 **
 
