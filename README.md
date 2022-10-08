@@ -1,5 +1,10 @@
 # KcBERT: Korean comments BERT
 
+** Updates on 2022.10.08 **
+
+- KcELECTRA-base-v2022 (구 dev) 모델 이름이 변경되었습니다.
+- 기존 KcELECTRA-base(v2021) 대비 대부분의 downstream task에서 ~1%p 수준의 성능 향상이 있습니다.
+
 ** Updates on 2022.09.14 **
 
 - emoji의 v2.0.0 업데이트됨에 따라 Preprocessing 코드가 일부 변경되었습니다.
