@@ -1,5 +1,11 @@
 # KcBERT: Korean comments BERT
 
+** Updates on 2022.11.07 **
+
+- KcELECTRA v2022 학습에 사용한, 확장된 텍스트 데이터셋(v2022.3Q)를 공개합니다.
+- https://github.com/Beomi/KcBERT/releases/tag/v2022.3Q
+- 기존 11GB -> 신규 45GB, 기존 0.9억건 -> 신규 3.4억건으로 기존 v1 데이터셋 대비 약 4배 증가한 데이터셋입니다.
+
 ** Updates on 2022.10.08 **
 
 - KcELECTRA-base-v2022 (구 dev) 모델 이름이 변경되었습니다.
